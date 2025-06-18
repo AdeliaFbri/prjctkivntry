@@ -47,3 +47,17 @@ void menampilkanDataPelanggan() {
         cout << "- " << p.nama << " (Top Up: Rp " << p.topUp << ")\n";
     getch();
 }
+void jumlahData() {
+    system("cls");
+    int totalStok = 0, totalTopup = 0;
+    for (auto& i : inventory) {
+        totalStok += i.stok;
+    }
+    for (auto& p : pelanggan) {
+        totalTopup += p.topUp;
+    }
+
+    cout << "Total stok seluruh item: " << totalStok << endl;
+    cout << "Total nilai top up pelanggan: Rp " << totalTopup << endl;
+    getch();
+}
