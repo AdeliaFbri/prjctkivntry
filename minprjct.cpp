@@ -40,3 +40,10 @@ void menampilkanInventory() {
              << setw(10) << inventory[i].stok << setw(10) << inventory[i].harga << endl;
     getch();
 }
+void menampilkanDataPelanggan() {
+    system("cls");
+    cout << "Data Pelanggan Top Up:\n";
+    for (auto& p : pelanggan)
+        cout << "- " << p.nama << " (Top Up: Rp " << p.topUp << ")\n";
+    getch();
+}
