@@ -31,15 +31,24 @@ void inisialisasiData() {
         {"Aulia", 90000}
     };
 }
-void menampilkanInventory() {
+
+void tampilkanInventory() {
     system("cls");
     cout << "Daftar Inventory:\n";
-    cout << left << setw(5) << "No" << setw(15) << "Nama" << setw(10) << "Stok" << setw(10) << "Harga\n";
-    for (int i = 0; i < inventory.size(); i++)
-        cout << left << setw(5) << i << setw(15) << inventory[i].nama
-             << setw(10) << inventory[i].stok << setw(10) << inventory[i].harga << endl;
+    cout << left << setw(5) << "No" 
+         << setw(20) << "Nama" 
+         << setw(10) << "Stok" 
+         << setw(10) << "Harga" << "\n";
+
+    for (size_t i = 0; i < inventory.size(); ++i) {
+        cout << setw(5) << (i + 1) 
+             << setw(20) << inventory[i].nama 
+             << setw(10) << inventory[i].stok 
+             << setw(10) << inventory[i].harga << "\n";
+    }
     getch();
 }
+
 void menampilkanDataPelanggan() {
     system("cls");
     cout << "Data Pelanggan Top Up:\n";
@@ -47,15 +56,24 @@ void menampilkanDataPelanggan() {
         cout << "- " << p.nama << " (Top Up: Rp " << p.topUp << ")\n";
     getch();
 }
+
+void menambahkanItem() {
+    system("cls");
+    Item ESP;
+    cout << "Tambah Item:\n";
+    cout << "Nama: "; cin >> ws; getline(cin, ESP.nama);
+    cout << "Stok: "; cin >> ESP.stok;
+    cout << "Harga: "; cin >> ESP.harga;
+    inventory.push_back(ESP);
+    cout << "Item berhasil ditambahkan!";
+    getch();
+}
+
 void jumlahData() {
     system("cls");
     int totalStok = 0, totalTopup = 0;
-    for (auto& i : inventory) {
-        totalStok += i.stok;
-    }
-    for (auto& p : pelanggan) {
-        totalTopup += p.topUp;
-    }
+    for (auto& i : inventory) totalStok += i.stok;
+    for (auto& p : pelanggan) totalTopup += p.topUp;
 
     cout << "Total stok seluruh item: " << totalStok << endl;
     cout << "Total nilai top up pelanggan: Rp " << totalTopup << endl;
@@ -68,8 +86,9 @@ void dMenu() {
     cout << "1. Inisialisasi Data\n";
     cout << "2. Tampilkan Inventory\n";
     cout << "3. Tampilkan Data Pelanggan\n";
-    cout << "4. Total Semua Data\n";
-    cout << "5. Exit\n";
+    cout << "4. Tambah Item\n";
+    cout << "5. Total Semua Data\n";
+    cout << "6. Exit\n";
     cout << "Masukkan angka: ";
 }
 
@@ -82,16 +101,19 @@ int main() {
             case '1': inisialisasiData(); 
             break;
 
-            case '2': menampilkanInventory(); 
+            case '2': tampilkanInventory(); 
             break;
 
             case '3': menampilkanDataPelanggan(); 
             break;
 
-            case '4': jumlahData(); 
+            case '4': menambahkanItem(); 
             break;
 
-            case '5': 
+            case '5': jumlahData(); 
+            break;
+
+            case '6': 
             break;
             
             default:
@@ -100,7 +122,7 @@ int main() {
                 getch();
                 break;
         }
- } while (pilih != '8');
+    } while (pilih != '6');
 
     return 0;
 }
