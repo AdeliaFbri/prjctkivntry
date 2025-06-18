@@ -67,6 +67,8 @@ void menambahkanItem() {
     inventory.push_back(ESP);
     cout << "Item berhasil ditambahkan!";
     getch();
+
+    tampilkanInventory();
 }
 
 void jumlahData() {
@@ -115,7 +117,7 @@ int main() {
 
             case '6': 
             break;
-            
+
             default:
                 system("cls");
                 cout << "Pilihan tidak tersedia!";
