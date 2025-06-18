@@ -31,3 +31,12 @@ void inisialisasiData() {
         {"Aulia", 90000}
     };
 }
+void menampilkanInventory() {
+    system("cls");
+    cout << "Daftar Inventory:\n";
+    cout << left << setw(5) << "No" << setw(15) << "Nama" << setw(10) << "Stok" << setw(10) << "Harga\n";
+    for (int i = 0; i < inventory.size(); i++)
+        cout << left << setw(5) << i << setw(15) << inventory[i].nama
+             << setw(10) << inventory[i].stok << setw(10) << inventory[i].harga << endl;
+    getch();
+}
